@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0b2a4a" />
+<meta name="description" content="Class T-shirt registration for Construction Management students." />
+<title>Class T-Shirt Registration | Construction Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--blueprint:#0b2a4a;--dark:#081f37;--yellow:#ffc414;--paper:#f6f3ea;--ink:#14202e;--muted:#5b6776;--error:#c0392b;--ok:#1e8e4e;
+--shirt:#ffc414;--shirt-text:#0b2a4a; /* change --shirt to your real shirt color */
+--cond:"Barlow Condensed","Arial Narrow",sans-serif;--mono:"IBM Plex Mono",Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Barlow",Arial,sans-serif;color:#fff;min-height:100vh;display:flex;flex-direction:column;background-color:var(--blueprint);
+background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+background-size:96px 96px,96px 96px,16px 16px,16px 16px}
+.tape{height:14px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,#111 16px 32px)}
+.topbar{max-width:1180px;width:100%;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}.brand svg{width:38px;height:38px}
+.brand strong{font-family:var(--cond);font-size:1.35rem;letter-spacing:.14em}
+.tag{font-family:var(--mono);font-size:.72rem;color:#cfe0f2;border:1px solid rgba(255,255,255,.35);padding:6px 10px}
+main{flex:1;max-width:1180px;width:100%;margin:0 auto;padding:20px 24px 70px;display:grid;grid-template-columns:1.05fr 1fr;grid-template-areas:"text form" "preview form";gap:36px 56px;align-items:start}
+.hero-text{grid-area:text}.form-card{grid-area:form}.preview{grid-area:preview}
+.eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--yellow);margin-bottom:18px}
+h1{font-family:var(--cond);font-weight:800;text-transform:uppercase;font-size:clamp(3rem,8vw,5.6rem);line-height:.95}
+h1 span{color:var(--yellow);display:block}
+.lead{margin-top:22px;max-width:480px;font-size:1.1rem;line-height:1.55;color:#d9e6f4}
+.steps{list-style:none;margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.steps li{font-family:var(--mono);font-size:.78rem;border:1px solid rgba(255,255,255,.35);padding:8px 12px}
+.steps b{color:var(--yellow);font-weight:500;margin-right:6px}
+.form-card{background:var(--paper);color:var(--ink);box-shadow:10px 10px 0 rgba(0,0,0,.35)}
+.sheet-head{background:var(--ink);color:#fff;padding:14px 24px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em}
+.sheet-head i{font-style:normal;color:var(--yellow)}
+.sheet-body{padding:30px 28px 26px}
+.sheet-body h2{font-family:var(--cond);font-size:2.1rem;text-transform:uppercase;line-height:1}
+.hint{margin:10px 0 26px;color:var(--muted);font-size:.95rem;line-height:1.45}
+.field-label,.legend{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+input[type=text]{width:100%;padding:15px 14px;font:inherit;font-size:1.05rem;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:0;margin-bottom:24px}
+input[type=text]:focus{outline:3px solid var(--yellow);outline-offset:1px}
+fieldset{border:0;margin-bottom:26px}
+.sizes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.chip{position:relative}.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:block;text-align:center;padding:15px 0;font-family:var(--cond);font-weight:700;font-size:1.25rem;background:#fff;border:2px solid var(--ink);cursor:pointer;user-select:none}
+.chip input:checked+label{background:var(--blueprint);color:var(--yellow);border-color:var(--blueprint)}
+.chip input:focus-visible+label{outline:3px solid var(--yellow);outline-offset:2px}
+.size-note{margin-top:10px;font-size:.85rem;color:var(--muted)}
+.submit{width:100%;padding:17px;font-family:var(--cond);font-weight:800;font-size:1.3rem;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:#111;border:2px solid #111;box-shadow:0 5px 0 #111;cursor:pointer}
+.submit:active{transform:translateY(4px);box-shadow:0 1px 0 #111}
+.submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:0 5px 0 #111}
+#message{margin-top:16px;min-height:1.3em;font-size:.95rem;font-weight:500}
+#message.ok{color:var(--ok)}#message.error{color:var(--error)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.title-block{display:grid;grid-template-columns:1.2fr 1.6fr .6fr;border-top:2px solid var(--ink)}
+.title-block div{padding:10px 14px;border-right:1px solid var(--ink);font-size:.8rem}
+.title-block div:last-child{border-right:0}
+.title-block small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--muted)}
+#done{display:none;text-align:center;padding:10px 0 6px}#done.show{display:block}
+.check{width:72px;height:72px;margin:0 auto 18px;border:3px solid var(--ok);border-radius:50%;display:grid;place-items:center;color:var(--ok);font-size:2.2rem}
+#done h3{font-family:var(--cond);font-size:2rem;text-transform:uppercase}
+#done p{margin:10px 0 24px;color:var(--muted);line-height:1.5}
+.ghost{padding:13px 22px;font-family:var(--cond);font-weight:700;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:2px solid var(--ink);color:var(--ink);cursor:pointer}
+.ghost:hover{background:var(--ink);color:#fff}
+.preview{display:flex;align-items:center;gap:24px;border:1px dashed rgba(255,255,255,.45);padding:18px 22px;max-width:520px}
+.preview svg{width:190px;flex-shrink:0;filter:drop-shadow(6px 8px 0 rgba(0,0,0,.3))}
+.meta{font-family:var(--mono);font-size:.74rem;line-height:1.8;color:#cfe0f2}.meta b{color:var(--yellow);font-weight:500}
+.shirt-body{fill:var(--shirt);stroke:#111;stroke-width:3;stroke-linejoin:round}
+.shirt-name{font-family:var(--cond);font-weight:800;fill:var(--shirt-text);text-anchor:middle;letter-spacing:.04em}
+.shirt-sub{font-family:var(--mono);font-size:8px;letter-spacing:.16em;fill:var(--shirt-text);text-anchor:middle}
+.tag-bg{fill:#fff;stroke:#111;stroke-width:2}
+.tag-text{font-family:var(--cond);font-weight:800;font-size:14px;text-anchor:middle;fill:#111}
+footer{border-top:1px solid rgba(255,255,255,.2);background:var(--dark);padding:22px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.85rem;color:#b9cbe0}
+footer strong{font-family:var(--cond);letter-spacing:.16em;color:#fff}
+@media(max-width:920px){main{grid-template-columns:1fr;grid-template-areas:"text" "form" "preview";gap:32px}.preview{max-width:none}}
+@media(max-width:480px){.sheet-body{padding:24px 18px 20px}.tag{display:none}.preview{flex-direction:column;text-align:center}.title-block{grid-template-columns:1fr 1fr}.title-block div:last-child{display:none}}
+</style>
+</head>
+<body>
+<div class="tape" aria-hidden="true"></div>
+<div class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 44c0-12 9-22 22-22s22 10 22 22z" fill="#ffc414" stroke="#111" stroke-width="3" stroke-linejoin="round"/><rect x="26" y="14" width="12" height="12" fill="#ffc414" stroke="#111" stroke-width="3"/><rect x="6" y="44" width="52" height="8" rx="2" fill="#ffc414" stroke="#111" stroke-width="3"/></svg>
+    <strong>CLASS THREADS</strong>
+  </div>
+  <span class="tag">DEPT. OF CONSTRUCTION MANAGEMENT</span>
+</div>
+
+<main>
+  <section class="hero-text">
+    <p class="eyebrow">CLASS T-SHIRT ORDER</p>
+    <h1>Built together.<span>Worn together.</span></h1>
+    <p class="lead">Every great project starts with a good crew. Add your name and size to the class list, so your shirt is ready when the order goes in.</p>
+    <ol class="steps"><li><b>1</b>Enter your name</li><li><b>2</b>Pick your size</li><li><b>3</b>Save your spot</li></ol>
+  </section>
+
+  <section class="form-card" id="register">
+    <div class="sheet-head"><span>REGISTRATION FORM</span><i>REV. A</i></div>
+    <div class="sheet-body">
+      <div id="formWrap">
+        <h2>Save your spot</h2>
+        <p class="hint">Check your size carefully. It cannot be changed after the order is sent.</p>
+        <form id="form" novalidate>
+          <label class="field-label" for="name">Full name</label>
+          <input id="name" type="text" placeholder="e.g. Abebe Kebede" maxlength="80" autocomplete="name" required />
+          <div class="hp" aria-hidden="true"><label>Leave this empty <input id="website" type="text" tabindex="-1" autocomplete="off" /></label></div>
+          <fieldset>
+            <legend class="legend">T-shirt size</legend>
+            <div class="sizes">
+              <div class="chip"><input type="radio" name="size" id="size-S" value="S" /><label for="size-S">S</label></div>
+              <div class="chip"><input type="radio" name="size" id="size-M" value="M" /><label for="size-M">M</label></div>
+              <div class="chip"><input type="radio" name="size" id="size-L" value="L" /><label for="size-L">L</label></div>
+              <div class="chip"><input type="radio" name="size" id="size-XL" value="XL" /><label for="size-XL">XL</label></div>
+              <div class="chip"><input type="radio" name="size" id="size-XXL" value="XXL" /><label for="size-XXL">XXL</label></div>
+            </div>
+            <p class="size-note">Not sure? Choose the bigger size.</p>
+          </fieldset>
+          <button id="submitBtn" class="submit" type="submit">Save my spot</button>
+          <p id="message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div id="done" aria-live="polite">
+        <div class="check">&#10003;</div>
+        <h3>You're on the list</h3>
+        <p id="doneText"></p>
+        <button id="againBtn" class="ghost" type="button">Register another person</button>
+      </div>
+    </div>
+    <div class="title-block"><div><small>PROJECT</small>Class T-Shirt</div><div><small>DEPARTMENT</small>Construction Management</div><div><small>STATUS</small>Open</div></div>
+  </section>
+
+  <aside class="preview" aria-label="T-shirt preview">
+    <svg viewBox="0 0 300 300" role="img" aria-label="Back of the T-shirt with your name">
+      <path class="shirt-body" d="M95 30 L60 45 L15 85 L45 120 L70 100 L70 268 Q70 280 82 280 L218 280 Q230 280 230 268 L230 100 L255 120 L285 85 L240 45 L205 30 Q190 55 150 55 Q110 55 95 30 Z"/>
+      <rect class="tag-bg" x="132" y="56" width="36" height="22" rx="2"/>
+      <text id="sizeTag" class="tag-text" x="150" y="72">--</text>
+      <text class="shirt-sub" x="150" y="112">CONSTRUCTION MANAGEMENT</text>
+      <text id="shirtName" class="shirt-name" x="150" y="150" font-size="26">YOUR NAME</text>
+    </svg>
+    <div class="meta">PREVIEW (ILLUSTRATION)<br />NAME: <b id="metaName">&mdash;</b><br />SIZE: <b id="metaSize">&mdash;</b></div>
+  </aside>
+</main>
+
+<footer><strong>CLASS THREADS</strong><span>Made together, worn together.</span></footer>
+<div class="tape" aria-hidden="true"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const cfg = window.APP_CONFIG || {};
+  const ready = cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY &&
+    !/^YOUR_/.test(cfg.SUPABASE_URL) && !/^YOUR_/.test(cfg.SUPABASE_ANON_KEY);
+  let db = null;
+  if (ready && window.supabase) db = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("form"), nameInput = $("name"), btn = $("submitBtn"), msg = $("message");
+
+  const selectedSize = () => { const el = form.querySelector('input[name="size"]:checked'); return el ? el.value : ""; };
+  const show = (text, type) => { msg.textContent = text; msg.className = type || ""; };
+
+  function updatePreview() {
+    const raw = nameInput.value.trim().replace(/\s+/g, " ");
+    const name = raw.toUpperCase(), size = selectedSize();
+    $("shirtName").textContent = name || "YOUR NAME";
+    $("shirtName").setAttribute("font-size", Math.max(7, Math.min(26, 300 / Math.max(name.length, 1))));
+    $("sizeTag").textContent = size || "--";
+    $("metaName").textContent = raw || "\u2014";
+    $("metaSize").textContent = size || "\u2014";
+  }
+  nameInput.addEventListener("input", updatePreview);
+  form.addEventListener("change", updatePreview);
+
+  function showDone(name, size) {
+    $("doneText").textContent = name + " \u2014 size " + size + ". Your spot is saved on the class list.";
+    $("formWrap").style.display = "none";
+    $("done").classList.add("show");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fullName = nameInput.value.trim().replace(/\s+/g, " ");
+    const size = selectedSize();
+
+    if (fullName.length < 3) { show("Write your full name (at least 3 letters).", "error"); nameInput.focus(); return; }
+    if (!size) { show("Pick your size.", "error"); return; }
+    if ($("website").value) { showDone(fullName, size); return; } // bots fill hidden fields: save nothing
+    if (!db) { show("This page is not connected to the class list yet. Tell the class representative.", "error"); return; }
+
+    btn.disabled = true; btn.textContent = "Saving..."; show("", "");
+    let error = null;
+    try {
+      ({ error } = await db.from("registrations").insert({ full_name: fullName, size: size }));
+    } catch (err) { error = err; }
+    btn.disabled = false; btn.textContent = "Save my spot";
+
+    if (error) {
+      if (error.code === "23505") show("This name is already on the list.", "error");
+      else { show("Could not save. Check your internet and try again.", "error"); console.error(error); }
+      return;
+    }
+    showDone(fullName, size);
+  });
+
+  $("againBtn").addEventListener("click", () => {
+    form.reset(); updatePreview(); show("", "");
+    $("done").classList.remove("show"); $("formWrap").style.display = ""; nameInput.focus();
+  });
+
+  updatePreview();
+})();
+</script>
+</body>
+</html>
