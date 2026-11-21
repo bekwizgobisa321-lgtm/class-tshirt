@@ -412,35 +412,11 @@
       .pay-row b {
         word-break: break-word;
       }
-      .pay-empty {
-        color: #d5e2ff;
-        line-height: 1.5;
-        font-weight: 600;
-      }
       .built-by {
         max-width: 1100px;
         width: 100%;
         margin: 0 auto;
         padding: 0 24px 26px;
-      }
-      .built-by span {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #e6eeff;
-        border-left: 4px solid var(--yellow);
-        padding: 6px 0 6px 12px;
-      }
-      .built-by b {
-        font-family: var(--title);
-        font-weight: 400;
-        font-size: 1.25rem;
-        letter-spacing: 0.08em;
-        color: var(--yellow);
       }
       footer {
         background: var(--navy);
@@ -499,17 +475,17 @@
           <path d="M52 8 L52 20 M46 14 L58 14 M48 10 L56 18 M56 10 L48 18" stroke="#ffd23f" stroke-width="2.5" stroke-linecap="round" />
           <path d="M20 34 Q22 28 28 27" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
         </svg>
-        <strong>CS SQUAD SHIRT DROP</strong>
+        <strong>You’ll get your shirt this week! Let’s finish up the remaining payments</strong>
       </div>
-      <span class="tag">DEPT. OF COMPUTER SCIENCE</span>
+      <span class="tag">COMPUTER SCIENCE</span>
     </div>
 
     <main>
       <section class="hero-text">
         <p class="eyebrow">FINAL PAYMENT</p>
-        <h1>Pay the <span>left money</span></h1>
+        <h1>Pay your <span>remaining payment</span></h1>
         <p class="lead">
-          Already registered? Pay the money that is left, then send your name
+        Pay your remaining payment, then send your name
           and a screenshot of the payment here.
         </p>
         <ol class="steps">
@@ -588,16 +564,14 @@
 
       <aside class="pay" id="payBox" aria-label="How to pay">
         <h3>How to pay</h3>
-        <div id="payRows"></div>
+        <div class="pay-row"><span>Name</span><b>Beka Desta</b></div>
+        <div class="pay-row"><span>CBE</span><b>1000500593478</b></div>
+        <div class="pay-row"><span>Telebirr</span><b>+251 91 396 5646</b></div>
       </aside>
     </main>
 
-    <div class="built-by">
-      <span>Built by <b>Bekiar</b></span>
-    </div>
-
     <footer>
-      <strong>CS SQUAD SHIRT DROP</strong><span>Final payment</span>
+      <strong>Computer science</strong><span>Final payment</span>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
@@ -637,35 +611,6 @@
           msg.textContent = text;
           msg.className = type || "";
         };
-
-        // "How to pay" box, filled from config.js
-        (function buildPayBox() {
-          const rows = [
-            ["Amount left", cfg.AMOUNT_LEFT],
-            ["Pay to", cfg.PAY_TO],
-            ["Deadline", cfg.DEADLINE],
-          ].filter((r) => r[1] && String(r[1]).trim());
-          const box = $("payRows");
-          if (!rows.length) {
-            const p = document.createElement("p");
-            p.className = "pay-empty";
-            p.textContent =
-              "The class representative will share the amount and the account details in the class group.";
-            box.appendChild(p);
-            return;
-          }
-          rows.forEach(([label, value]) => {
-            const row = document.createElement("div");
-            row.className = "pay-row";
-            const s = document.createElement("span");
-            s.textContent = label;
-            const b = document.createElement("b");
-            b.textContent = value;
-            row.appendChild(s);
-            row.appendChild(b);
-            box.appendChild(row);
-          });
-        })();
 
         // Screenshot preview
         let previewUrl = null;
